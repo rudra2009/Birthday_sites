@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 💖</title>
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 20px #ff0; }
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #fff;
+      color: #ff4081;
+      font-size: 16px;
+      margin-top: 15px;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 80%;
+      border-radius: 20px;
+      margin-top: 15px;
+    }
+
+    #typing {
+      font-size: 20px;
+      width: 80%;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Music -->
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+
+<button onclick="startSurprise()">🎁 Tap for Surprise</button>
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <h1>🎉 Happy Birthday Aishwarya 💖</h1>
+      <p id="typing"></p>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="swiper-slide">
+      <h1>📸 Our Memories</h1>
+      <input type="file" accept="image/*" onchange="showImage(event)">
+      <img id="preview">
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="swiper-slide">
+      <h1>💝 Special Message</h1>
+      <p>You are the best thing in my life 😍✨</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+  });
+
+  function startSurprise() {
+    document.getElementById("music").play();
+
+    confetti({
+      particleCount: 200,
+      spread: 100
+    });
+
+    typeText();
+  }
+
+  function showImage(event) {
+    const img = document.getElementById("preview");
+    img.src = URL.createObjectURL(event.target.files[0]);
+  }
+
+  const text = "Wishing you endless happiness, smiles and love 💖";
+  let i = 0;
+
+  function typeText() {
+    if (i < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeText, 50);
+    }
+  }
+</script>
+
+</body>
+</html>
